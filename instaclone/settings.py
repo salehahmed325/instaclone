@@ -127,8 +127,8 @@ STATIC_URL = '/static/'
 ACCOUNT_ACTIVATION_DAYS=3
 
 EMAIL_HOST= 'smtp.gmail.com'
-EMAIL_HOST_USER= 'udaysarker904@gmail.com'
-EMAIL_HOST_PASSWORD= 'limon325'
+EMAIL_HOST_USER= 'email@gmail.com'
+EMAIL_HOST_PASSWORD= 'password'
 EMAIL_PORT= 587
 EMAIL_USE_TLS= True
 
