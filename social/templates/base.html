@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>instaclone</title>
+    <link rel="stylesheet" href="/static/vender/bs/css/bootstrap.min.css">
+    <script src="/static/vender/jquery-3.3.1.min.js"></script>
+    <script src="/static/vender/popper.min.js"></script>
+    <script src="/static/vender/bs/js/bootstrap.min.js"></script>
+    <link href="/static/vender/fa/css/fontawesome.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+        <a class="navbar-brand" href="#">Instaclone</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="/social/home">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/social/about">About</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/social/contact">Contact</a>
+            </li>
+
+            {% if user.is_authenticated %}
+              <li class="nav-item">
+                <a class="nav-link" href="/social/myprofile">Users</a>
+              </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/social/mypost">My Posts</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/accounts/logout">Logout</a>
+                </li>
+            {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="/accounts/login">Login</a>
+                </li>
+            {% endif %}
+
+            {% if user.is_superuser %}
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin">Admin</a>
+                </li>
+            {% else %}
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/social/profile/edit/{{ user.myprofile.id }}">Edit Profile</a>
+                    </li>
+                    <a href=""></a>
+                {% endif %}
+            {% endif %}
+<!--
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Dropdown
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </div>
+            </li> -->
+          </ul>
+        </div>
+    </nav>
+
+    {% block content %}
+    {% endblock %}
+    
+    <footer class="text-center p-5">
+        <p>copyright @instaclone</p>
+    </footer>
+</body>
+</html>
